@@ -15,7 +15,7 @@ module Pronto::Dialyzer
       candidate_lines = patch.lines.select { |line| line.addition? }
       candidate_lines.reduce([]) do |accum, line|
         affected_line = self.class.dialyzer_lines.find do |dline|
-          dline.path == patch.new_file_full_path.to_s && dline.lineno == line.new_lineno
+          patch.repo.path.join(dline.path) == patch.new_file_full_path && dline.lineno == line.new_lineno
         end
 
         if affected_line
