@@ -1,0 +1,67 @@
+Starting Dialyzer
+dialyzer --no_check_plt --plt .local.plt -Wunmatched_returns -Werror_handling -Wrace_conditions -Wno_opaque --fullpath --statistics /Users/iuri/dev/elixir/poxa/_build/dev/lib/poxa/ebin
+  Compiling some key modules to native code... done in 0m0.25s
+  Proceeding with analysis...
+    compile    (+0.07s):   0.11s (  30 modules)
+    clean      (+0.00s):   0.00s
+    remote     (+0.01s):   0.17s
+    order      (+0.01s):   0.00s
+    typesig    (+0.07s):   0.08s (    266 SCCs)
+    order      (+0.00s):   0.00s
+    refine     (+0.00s):   0.07s (  30 modules)
+    order      (+0.00s):   0.00s
+    typesig    (+0.00s):   0.03s (     47 SCCs)
+    order      (+0.00s):   0.00s
+    refine     (+0.00s):   0.01s (   2 modules)
+    warning    (+0.01s):   0.28s (  30 modules)
+              (+ 0.79s)
+
+lib/poxa.ex:26: Expression produces a value of type 'ok' | {'error',_}, but this value is unmatched
+lib/poxa.ex:26: The call _@10:'port'() requires that _@10 is of type atom() | tuple() not #{}
+lib/poxa.ex:26: The call _@7:'app_secret'() requires that _@7 is of type atom() | tuple() not #{}
+lib/poxa.ex:26: The call _@4:'app_id'() requires that _@4 is of type atom() | tuple() not #{}
+lib/poxa.ex:26: The call _@1:'app_key'() requires that _@1 is of type atom() | tuple() not #{}
+lib/poxa.ex:28: The call _@13:'port'() requires that _@13 is of type atom() | tuple() not #{}
+lib/poxa.ex:30: Expression produces a value of type 'ok' | {'error',<<_:208,_:_*280>>}, but this value is unmatched
+lib/poxa.ex:33: Expression produces a value of type 'ok' | {'error',_}, but this value is unmatched
+lib/poxa.ex:66: Expression produces a value of type 'ok' | {'error',_}, but this value is unmatched
+lib/poxa.ex:71: Expression produces a value of type 'ok' | {'error',_}, but this value is unmatched
+lib/poxa.ex:76: Expression produces a value of type 'ok' | {'error',_}, but this value is unmatched
+lib/poxa/console/console.ex:70: Guard test is_binary(_@1::[[any()] | char()]) can never succeed
+lib/poxa/console/ws_handler.ex:19: Expression produces a value of type 'ok' | {'error',_}, but this value is unmatched
+lib/poxa/event_handler.ex:83: The call _@2:'name'() requires that _@2 is of type atom() | tuple() not #{}
+lib/poxa/event_handler.ex:83: The call _@1:'channels'() requires that _@1 is of type atom() | tuple() not #{}
+lib/poxa/ping_handler.ex:13: Expression produces a value of type 'ok' | {'error',_}, but this value is unmatched
+lib/poxa/presence_subscription.ex:31: Expression produces a value of type 'ok' | {'error',_}, but this value is unmatched
+lib/poxa/pusher_event.ex:195: The call _@1:'socket_id'() requires that _@1 is of type atom() | tuple() not #{}
+lib/poxa/pusher_event.ex:199: The call _@2:'data'() requires that _@2 is of type atom() | tuple() not #{}
+lib/poxa/pusher_event.ex:199: The call _@1:'name'() requires that _@1 is of type atom() | tuple() not #{}
+lib/poxa/socket_id.ex:8: Guard test is_binary(_@3::non_neg_integer()) can never succeed
+lib/poxa/socket_id.ex:8: Guard test is_binary(_@1::non_neg_integer()) can never succeed
+lib/poxa/subscription.ex:30: Expression produces a value of type 'ok' | {'error',_}, but this value is unmatched
+lib/poxa/subscription.ex:62: Expression produces a value of type 'ok' | {'error',_}, but this value is unmatched
+lib/poxa/subscription.ex:66: Expression produces a value of type 'ok' | {'error',_}, but this value is unmatched
+lib/poxa/subscription.ex:79: Expression produces a value of type 'nil' | {'ok',binary()}, but this value is unmatched
+lib/poxa/web_hook/dispatcher.ex:34: Expression produces a value of type atom() | ets:tid(), but this value is unmatched
+lib/poxa/web_hook/handler.ex:18: Expression produces a value of type [any()], but this value is unmatched
+lib/poxa/web_hook/handler.ex:23: Expression produces a value of type [any()], but this value is unmatched
+lib/poxa/web_hook/handler.ex:28: Expression produces a value of type [any()], but this value is unmatched
+lib/poxa/web_hook/handler.ex:33: Expression produces a value of type [any()], but this value is unmatched
+lib/poxa/web_hook/handler.ex:40: Expression produces a value of type [any()], but this value is unmatched
+lib/poxa/websocket_handler.ex:35: Guard test is_binary(_@1::7) can never succeed
+lib/poxa/websocket_handler.ex:42: Expression produces a value of type 'ok' | {'error',_}, but this value is unmatched
+lib/poxa/websocket_handler.ex:47: Expression produces a value of type 'ok' | {'error',_}, but this value is unmatched
+lib/poxa/websocket_handler.ex:106: The call _@1:'channels'() requires that _@1 is of type atom() | tuple() not #{}
+lib/poxa/websocket_handler.ex:109: The call _@5:'data'() requires that _@5 is of type atom() | tuple() not #{}
+lib/poxa/websocket_handler.ex:109: The call _@4:'name'() requires that _@4 is of type atom() | tuple() not #{}
+lib/poxa/websocket_handler.ex:109: The call _@3:'channels'() requires that _@3 is of type atom() | tuple() not #{}
+lib/poxa/websocket_handler.ex:114: Expression produces a value of type 'ok' | {'error',_}, but this value is unmatched
+lib/poxa/websocket_handler.ex:165: Guard test is_map(_@1::'Elixir.Poxa.Adapter.GProc') can never succeed
+spec/fixtures/test.ex:2: ERROR
+
+Unknown types:
+  cow_http_te:decode_ret/0
+  jsx:json_term/0
+ done in 0m1.77s
+done (warnings were emitted)
+
