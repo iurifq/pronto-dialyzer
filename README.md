@@ -1,7 +1,7 @@
 # Pronto runner for Dialyzer
 
 This allows you to take the output of Dialyzer and submit its errors with
-[Pronto]. It works both with Elixir and Erlang.
+[Pronto]. It works with both Elixir and Erlang.
 
 ## Installation
 
@@ -9,7 +9,7 @@ As an Elixir/Erlang application will probably not have a `Gemfile`, install it w
 
     $ gem install pronto-dialyzer
 
-After the gem is installed, [Pronto] will already be detected the Dialyzer
+After the gem is installed, [Pronto] will already detect the Dialyzer
 runner.
 
 ## Usage
