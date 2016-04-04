@@ -16,17 +16,17 @@ describe Pronto::Dialyzer do
 
     subject { described_class.new(patches) }
 
-    describe "#elixir_patches" do
+    describe "#beam_patches" do
       let(:patches_array) { [
-        double(:patch1, delta: double(:delta1, new_file: {path: "spec/fixtures/test.ex"})),
-        double(:patch2, delta: double(:delta2, new_file: {path: "spec/spec_helper.rb"})),
+        double(:elixir_patch, delta: double(new_file: {path: "spec/fixtures/test.ex"})),
+        double(:ruby_patch, delta: double(new_file: {path: "spec/spec_helper.rb"})),
+        double(:erlang_patch, delta: double(new_file: {path: "spec/fixtures/test.erl"})),
       ]}
 
       it 'selects files with .ex extension' do
-        expect(subject.elixir_patches.size).to eq 1
-        expect(
-          File.extname(subject.elixir_patches[0].new_file_full_path)
-        ).to eq ".ex"
+        elixir_patch, erlang_patch = subject.beam_patches
+        expect(File.extname(elixir_patch.new_file_full_path)).to eq ".ex"
+        expect(File.extname(erlang_patch.new_file_full_path)).to eq ".erl"
       end
     end
 

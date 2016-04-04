@@ -3,10 +3,11 @@ require 'pronto'
 
 module Pronto::Dialyzer
   class Runner < Pronto::Runner
+    BEAM_EXTENSIONS = %w(.ex .erl).freeze
 
     def run
       return [] unless File.exists?(self.class.dialyzer_output_path)
-      elixir_patches
+      beam_patches
         .select { |patch| patch.delta.status != :deleted }
         .flat_map { |patch| affected_lines(patch) }
     end
@@ -30,8 +31,10 @@ module Pronto::Dialyzer
       Pronto::Message.new(dline.path, line, :warning, dline.error)
     end
 
-    def elixir_patches
-      @patches.select {|patch| File.extname(patch.new_file_full_path) == '.ex' }
+    def beam_patches
+      @patches.select do |patch|
+        BEAM_EXTENSIONS.member?(File.extname(patch.new_file_full_path))
+      end
     end
 
     def self.dialyzer_output_path
