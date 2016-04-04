@@ -70,13 +70,17 @@ describe Pronto::Dialyzer do
       end
     end
 
-    describe ".dialyzer_lines" do
+    describe "#dialyzer_lines" do
+      let(:patches_array) { [] }
+
       before do
-        ENV['PRONTO_DIALYZER_OUTPUT'] = "spec/fixtures/dialyzer.out"
+        allow(ENV).to receive(:[]).with('PRONTO_DIALYZER_OUTPUT') {
+          "spec/fixtures/dialyzer.out"
+        }
       end
 
       it 'parses lines correctly' do
-        affected_lines = described_class.dialyzer_lines
+        affected_lines = subject.dialyzer_lines
         expect(affected_lines.count).to eq 42
         expect(affected_lines).to include(
           OpenStruct.new(lineno: 2, path: "spec/fixtures/test.ex", error: "ERROR")
